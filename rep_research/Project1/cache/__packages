@@ -1,0 +1,10 @@
+base
+datasets
+graphics
+grDevices
+knitr
+lattice
+lubridate
+methods
+stats
+utils
