@@ -58,24 +58,15 @@ plotcs <- function(hg,ag) {
   sqrt_prob <- sqrt(probs$probability)
   result <- paste(probs$home_goals,probs$away_goals, sep=":")
   probs <- cbind(probs,result)
-  #gbubs <- gvisBubbleChart(probs, idvar="result",
-  #           xvar="away_goals", yvar="home_goals", 
-  #           colorvar="type",sizevar="probability",
-  #           options=list(sizeAxis = '{minValue: 0,  maxSize: 10}',
-  #                        hAxis='{minValue:0, maxValue:9}'))
-  #plot(gbubs)
 }
 
 shinyServer(
   function(input, output) {
     output$inputhg <- renderText({paste("Home goals:", input$hg)})
     output$inputag <- renderText({paste("Away goals:", input$ag)})
-
-    #output$home <- renderPrint({calcprobs(input$hg,input$ag)[3]})
     output$home <- renderText({paste("Home win:", round(calcprobs(input$hg,input$ag)[3], 2))})
     output$draw <- renderText({paste("Draw:", round(calcprobs(input$hg,input$ag)[2], 2))})
     output$away <- renderText({paste("Away win:", round(calcprobs(input$hg,input$ag)[1], 2))})
-    #output$bubbles <- renderGvis({plotcs(input$hg,input$ag)})
     output$bubbles <- renderGvis({
       gvisBubbleChart(plotcs(input$hg,input$ag),idvar="result",
                       xvar="away_goals", yvar="home_goals", 

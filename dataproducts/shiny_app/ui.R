@@ -9,8 +9,6 @@ shinyUI(fluidPage(
      probabilities of the final scores depend on
      the expected average goals.'),
   sidebarLayout(
-  # headerPanel("Fair football betting odds"),
-  #  headerPanel(""),
   sidebarPanel(
     h4('Your expectation for...'),
     sliderInput('hg', 'Average home goals',value = 0.88, min = 0, max = 5, step = 0.01,),
